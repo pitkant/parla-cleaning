@@ -77,6 +77,9 @@ Zipped input_files.zip dataset is placed onto scratch project folder alongside p
 
 5.  The data is saved onto a database file. These individual database files are finally merged into one big database file by using parla_db_merging.R script.
 
+6.  The db file is moved to parla-shiny/data folder and the data is viewed by using a Shiny app.
+
 ## TO-DO
 
-Turn dataset
+-   [ ] Turn dataset handling into a slurm job that wouldn't need as much babysitting.
+-   [ ] Consider more efficient ways of storing and querying big datasets.
