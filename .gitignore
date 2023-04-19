@@ -40,3 +40,6 @@ vignettes/*.pdf
 
 # MacOS Finder files
 .DS_Store
+
+# Shiny .db file
+parla-shiny/data/FI2000_2014.db
