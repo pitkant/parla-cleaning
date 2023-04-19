@@ -24,7 +24,7 @@ The steps for running everything are as follows:
 <u ana="#elderMember" who="#Kalevi_Lamminen" xml:id="FI2003_1_1.1">Toimitetaan nimenhuuto työjärjestyksen 2 §:ssä tarkoitetun luettelon mukaan. Pyydän, että edustajat nimenhuudossa seisomaan nousten kuuluvasti vastaavat, kun heidän nimensä huudetaan.</u>
 ```
 
-3 When reading processed XML files into R there may still be sometimes some errors. These errors are unfortunately heterogeneous and must be fixed by hand but they don't usually concern but singular rows with mangled data. Usually it concerns MP ids. An example of this type of data is:
+3. When reading processed XML files into R there may still be sometimes some errors. These errors are unfortunately heterogeneous and must be fixed by hand but they don't usually concern but singular rows with mangled data. Usually it concerns MP ids. An example of this type of data is:
 
 ```         
 <person xml:id="ja_:">
@@ -57,6 +57,8 @@ The steps for running everything are as follows:
 <u ana="#chairman" who="#ja_:" xml:id="2005_5_1">
 ```
 
+`<person>` fields with mangled information are removed. Weird `<org>` items from `<listOrg>` are removed. `who` attributes from `<u>` fields are corrected to refer to the correct persons.
+
 4.  Use parla_cleaning.R to clean each year's speech dataset. This is done by splitting the dataset into two: unilingually Finnish speeches into one pipeline and multilingually Finnish and Swedish speeches and unilingually Swedish speeches into another pipeline. Unilingually Finnish speeches can be handled with a simpler process by using a trankit pipeline that has unilingually Finnish language detection. Multilingual and Swedish speeches are split into individual sentences and language is determined for each sentence individually, not for each paragraph. Trankit would classify a whole paragraph or speech to be Finnish or Swedish, possibly based on which language its last words are in (?).
 
 The Finnish dataset is handled on CSC Jupyter notebooks with GPU acceleration. The notebook has the following specifications:
@@ -79,7 +81,11 @@ Zipped input_files.zip dataset is placed onto scratch project folder alongside p
 
 6.  The db file is moved to parla-shiny/data folder and the data is viewed by using a Shiny app.
 
+## Testing
+
+This repository does not contain the necessary .db file needed to run Shiny app due to its large size. Shiny App can be tested by downloading and extracting a zip from Seafile: https://seafile.utu.fi/f/4f8b70147dea42c28999/
+
 ## TO-DO
 
--   [ ] Turn dataset handling into a slurm job that wouldn't need as much babysitting.
+-   [ ] Turn dataset handling into a slurm job that wouldn't need as much baby sitting.
 -   [ ] Consider more efficient ways of storing and querying big datasets.
