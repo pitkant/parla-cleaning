@@ -1,5 +1,16 @@
 #!/bin/bash
+#
+# (c) Pyry Kantanen, research assistant, 
+# Turku Data Science Group
+#
+# Inspired by script done by Kimmo Elo during the following project:
+# SEMPARL-hanke 2020-2022
+# Turun yliopisto, eduskuntatutkimuksen keskus
+#
+# Data files (e.g. Speeches_2001.xml, Speeches_2002.xml ...) assumed to be in 
+# the same directory as the script. 
 
+# save the working directory which contains the script as the data directory 
 DATADIR=$(pwd)
 TARGETDIR="$DATADIR/PROCESSED"
 
@@ -41,7 +52,7 @@ for FILE in "$DATADIR/"*.xml; do
                 else if ($i ~ /^[^ ]*=/) {
                     $i = " " $i;
                 }
-                # In case <u xml:id value already has .1 at the end (if there are interrupts)
+                # In case <u xml:id value already has .1 at the end (if there are interruption, vocalisations etc)
                 else if ($i ~ /^[0-9]{4}_[0-9]{1,3}_[0-9]{1,3}.[0-9]{1,2}$/) {
                     split($i,a,"_");
                     split($i,b,".");
@@ -84,5 +95,4 @@ for FILE in "$DATADIR/"*.xml; do
     
 done
 
-# Well done, palautetaan 0 eli kaikki ok!
 exit 0
