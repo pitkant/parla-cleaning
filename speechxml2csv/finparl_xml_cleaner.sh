@@ -69,7 +69,7 @@ for FILE in "$DATADIR/"*.xml; do
         }
         if ($0 ~ /^note /) { # if the line starts with <note, then process it
             for (i=2;i<=NF;i+=2) {
-                if ($i ~ /^20[0-9]{2}_[0-9]{1,3}_[0-9]{1,3}$/) {
+                if ($i ~ /^[0-9]{4}_[0-9]{1,3}_[0-9]{1,3}$/) {
                     split($i,a,"_");
                     year=a[1];
                     meeting=sprintf("%d",a[2]);
